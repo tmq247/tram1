@@ -60,7 +60,9 @@ async def iptv_play_handler(client, query: CallbackQuery):
         await query.answer()
         
         # Gửi lệnh /stream URL như người dùng tự gõ
-        await userbot.send_message(
+        first_userbot = userbot.clients[0]
+
+        await first_userbot.send_message(
             chat_id=query.message.chat.id,
             text=f"/stream {selected['url']}",
             reply_to_message_id=query.message.id
