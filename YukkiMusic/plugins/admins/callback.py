@@ -134,7 +134,8 @@ async def pages_markup(client, query, _):
         return
 
 
-@app.on_callback_query(filters.regex("ADMIN") & ~BANNED_USERS)
+@app.on_callback_query(filters.regex(r"^ADMIN\s[\w_]+\|\d+$")
+ & ~BANNED_USERS)
 @languageCB
 async def admin_callback(client, query, _):
     callback_data = query.data.strip()
