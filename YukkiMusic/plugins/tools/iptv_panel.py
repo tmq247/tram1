@@ -1,24 +1,19 @@
-# YukkiMusic/modules/iptv_panel.py
-
 import os
 import json
 from pyrogram import filters
 from pyrogram.types import (
     Message,
-    CallbackQuery,
     InlineKeyboardMarkup,
     InlineKeyboardButton,
+    CallbackQuery,
 )
 
 from config import BANNED_USERS
 from YukkiMusic import app
 
-# ✅ Import hàm xử lý phát stream (bạn cần tạo hàm này)
-from YukkiMusic.modules.stream_handler import stream_execute
-
 STREAM_FILE = "streams.json"
 
-# Tải danh sách stream
+# 🧠 Tải danh sách stream từ file JSON
 def load_streams():
     if not os.path.exists(STREAM_FILE):
         return []
@@ -28,33 +23,32 @@ def load_streams():
     except Exception:
         return []
 
-# Lệnh /iptv: hiển thị danh sách nút chọn
+# 🟢 Lệnh /iptv → hiển thị danh sách kênh dạng nút
 @app.on_message(filters.command("iptv") & ~BANNED_USERS)
 async def iptv_command(client, message: Message):
     streams = load_streams()
     if not streams:
-        return await message.reply("📭 Danh sách IPTV hiện đang trống.")
+        return await message.reply("📭 Danh sách IPTV trống.")
 
     buttons = []
     for stream in streams:
-        title = stream["title"].strip()
-        key = f"iptv_run|{title[:48].lower()}"
-        buttons.append(
-            [InlineKeyboardButton(text=title[:32], callback_data=key)]
-        )
+        title = stream["title"].strip()[:32]
+        callback_id = f"iptv_stream|{title.lower()[:48]}"
+        buttons.append([
+            InlineKeyboardButton(text=title, callback_data=callback_id)
+        ])
 
     await message.reply(
-        "**📡 Chọn kênh bạn muốn phát vào voice chat:**",
+        "**📺 Chọn kênh bạn muốn phát vào voice chat:**",
         reply_markup=InlineKeyboardMarkup(buttons)
     )
 
-# Xử lý khi người dùng nhấn nút
-@app.on_callback_query(filters.regex(r"^iptv_run\|") & ~BANNED_USERS)
-async def iptv_callback_handler(client, query: CallbackQuery):
+# ⚡ Xử lý khi người dùng nhấn nút chọn kênh
+@app.on_callback_query(filters.regex(r"^iptv_stream\|") & ~BANNED_USERS)
+async def iptv_play_handler(client, query: CallbackQuery):
     try:
         _, title_key = query.data.split("|", 1)
         streams = load_streams()
-
         selected = next(
             (s for s in streams if s["title"].strip().lower()[:48] == title_key),
             None
@@ -63,11 +57,15 @@ async def iptv_callback_handler(client, query: CallbackQuery):
         if not selected:
             return await query.answer("❌ Không tìm thấy kênh!", show_alert=True)
 
-        await query.answer("🚀 Đang phát...", show_alert=False)
-
-        # Gọi hàm phát
-        await stream_execute(client, query.message.chat.id, selected["url"])
+        await query.answer()
+        
+        # Gửi lệnh /stream URL như người dùng tự gõ
+        await client.send_message(
+            chat_id=query.message.chat.id,
+            text=f"/stream {selected['url']}",
+            reply_to_message_id=query.message.id
+        )
 
     except Exception as e:
-        print("❌ IPTV callback error:", e)
-        await query.answer("Đã xảy ra lỗi khi phát kênh.", show_alert=True)
+        print("⚠️ IPTV callback error:", e)
+        await query.answer("Lỗi khi phát kênh!", show_alert=True)
