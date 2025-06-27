@@ -1,3 +1,5 @@
+# YukkiMusic/modules/inline_m3u8.py
+
 import os
 import json
 from pyrogram.types import (
@@ -8,7 +10,6 @@ from pyrogram.types import (
 
 from config import BANNED_USERS
 from YukkiMusic import app
-from YukkiMusic.misc import SUDOERS
 
 STREAM_FILE = "streams.json"
 
@@ -23,16 +24,6 @@ def load_streams():
 
 @app.on_inline_query(~BANNED_USERS)
 async def inline_query_handler(client, query):
-    user_id = query.from_user.id
-    if user_id not in SUDOERS:
-        await query.answer(
-            results=[],
-            switch_pm_text="🚫 Bạn không có quyền sử dụng tính năng inline này.",
-            switch_pm_parameter="no_access",
-            cache_time=5,
-        )
-        return
-
     streams = load_streams()
     if not streams:
         await query.answer(
