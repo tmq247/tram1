@@ -15,7 +15,7 @@ from YukkiMusic import app
 
 STREAM_FILE = "streams.json"
 
-# Load danh sách stream từ file
+# 🔄 Tải danh sách stream
 def load_streams():
     if not os.path.exists(STREAM_FILE):
         return []
@@ -25,14 +25,14 @@ def load_streams():
     except Exception:
         return []
 
-# 👉 Inline query trả danh sách stream
+# 📥 Inline query hiển thị stream
 @app.on_inline_query(~BANNED_USERS)
 async def inline_query_handler(client, query):
     streams = load_streams()
     if not streams:
         await query.answer(
             results=[],
-            switch_pm_text="📭 Danh sách stream đang trống.",
+            switch_pm_text="📭 Danh sách stream trống.",
             switch_pm_parameter="empty",
             cache_time=5,
         )
@@ -40,13 +40,16 @@ async def inline_query_handler(client, query):
 
     answers = []
     for stream in streams:
+        title = stream["title"].strip()
+        callback_id = title[:48].lower()  # An toàn dưới 64 ký tự
+
         caption = f"""🎬 **{stream['title']}**
 
 📺 [Xem trực tiếp tại đây]({stream['url']})
 
 ℹ️ {stream['description']}
 
-👉 _Bấm nút bên dưới để phát trực tiếp vào voice chat bằng lệnh_ `/stream {stream['url']}`
+👉 _Bấm nút bên dưới để phát vào voice chat bằng lệnh_ `/stream {stream['url']}`
 
 ⚡️ _Nguồn phát do quản trị viên định nghĩa_"""
 
@@ -58,7 +61,7 @@ async def inline_query_handler(client, query):
                 caption=caption,
                 thumb_url=stream["thumb"],
                 reply_markup=InlineKeyboardMarkup(
-                    [[InlineKeyboardButton("▶️ Phát trong nhóm", callback_data=f"stream_now|{stream['url']}")]]
+                    [[InlineKeyboardButton("▶️ Phát trong nhóm", callback_data=f"stream_now|{callback_id}")]]
                 ),
             )
         )
@@ -68,23 +71,32 @@ async def inline_query_handler(client, query):
     except Exception as e:
         print(f"⚠️ Inline query error: {e}")
 
-# ✅ Xử lý khi bấm nút "Phát trong nhóm"
+# 🎯 Xử lý khi nhấn nút callback
 @app.on_callback_query(filters.regex(r"^stream_now\|") & ~BANNED_USERS)
 async def stream_now_handler(client, query: CallbackQuery):
     try:
-        _, url = query.data.split("|", 1)
-        chat_id = query.message.chat.id
+        _, title_raw = query.data.split("|", 1)
+        title_key = title_raw.strip().lower()
+
+        streams = load_streams()
+        selected = next(
+            (s for s in streams if s["title"].strip().lower()[:48] == title_key),
+            None
+        )
+
+        if not selected:
+            await query.answer("❌ Không tìm thấy stream.", show_alert=True)
+            return
 
         await query.answer()
         await query.message.delete()
 
-        # Gửi lệnh /stream như thể người dùng vừa gõ tay
         await client.send_message(
-            chat_id=chat_id,
-            text=f"/stream {url}",
-            reply_to_message_id=query.message.id  # hoặc None nếu không muốn reply
+            chat_id=query.message.chat.id,
+            text=f"/stream {selected['url']}",
+            reply_to_message_id=query.message.id
         )
 
     except Exception as e:
-        print("❌ Callback error:", e)
-        await query.answer("Lỗi khi xử lý phát stream.", show_alert=True)
+        print(f"❌ Callback handler error: {e}")
+        await query.answer("Lỗi khi xử lý stream.", show_alert=True)
