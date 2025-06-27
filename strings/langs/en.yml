@@ -478,7 +478,7 @@ AUTH_HELPER: |
   <b>✧ {AUTHUSERS_COMMAND}</b> - Kiểm tra DANH SÁCH ỦY QUYỀN của nhóm.
 
 ADMIN_HELPER: |
-  <b>c là viết tắt của chế độ phát qua kênh (channel play)</b>
+  <b> c là viết tắt của chế độ phát qua kênh (channel play)</b>
   
   <b>✧ {PAUSE_COMMAND}</b> - Tạm dừng bài hát đang phát.
   <b>✧ {RESUME_COMMAND}</b> - Tiếp tục phát bài hát đã tạm dừng.
