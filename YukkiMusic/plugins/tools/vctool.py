@@ -73,7 +73,7 @@ async def safe_leave_call(assistant, chat_id):
 
 ############################################
 
-@app.on_message(filters.command(["vcinfo"], ["/", "!"]))
+@app.on_message(command(["vcinfo"], ["/", "!"]))
 async def strcall(client, message):
     assistant = await group_assistant(Yukki, message.chat.id)
     userbot = await get_assistant(message.chat.id)
@@ -81,7 +81,7 @@ async def strcall(client, message):
 
     try:
         # Tham gia call bằng assistant
-        await safe_join_call(assistant, message.chat.id, "./Yukki/assets/call.mp3")
+        await safe_join_call(assistant, message.chat.id, "./call.mp3")
 
         try:
             participants = await assistant.get_participants(message.chat.id)
@@ -181,7 +181,7 @@ async def get_group_call(
     await app.send_message("**Cuộc gọi nhóm đang bị tắt** {err_msg}")
     return False
 
-@app.on_message(filters.command(["vcstart","startvc"], ["/", "!"]))
+@app.on_message(command(["vcstart","startvc"], ["/", "!"]))
 async def start_group_call(c: Client, m: Message):
     chat_id = m.chat.id
     assistant = await get_assistant(chat_id)
@@ -247,7 +247,7 @@ async def start_group_call(c: Client, m: Message):
       except:
          await msg.edit_text("Cấp quyền quản lý cuộc gọi nhóm cho bot, userbot và thử lại⚡")
 
-@app.on_message(filters.command(["vcend","endvc"], ["/", "!"]))
+@app.on_message(command(["vcend","endvc"], ["/", "!"]))
 async def stop_group_call(c: Client, m: Message):
     chat_id = m.chat.id
     assistant = await get_assistant(chat_id)
