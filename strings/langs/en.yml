@@ -110,6 +110,7 @@ set_cb_6 : "⚙️ Đang áp dụng thay đổi."
 set_cb_7 : "🔄 Đang lấy danh sách người dùng được ủy quyền... vui lòng chờ."
 set_cb_8 : "🔙 Đang quay lại..."
 
+
 ustats_1 : "🚫 Không tìm thấy thống kê người dùng."
 ustats_2 : "🎶 Bạn đã phát **{0}** bài hát cho đến nay với tổng số lần phát lên đến **{1}** lần.\n\nTop **{2}** bài hát được bạn phát nhiều nhất:\n\n"
 
@@ -160,6 +161,7 @@ play_17: "🚫 Không thể phát loại truy vấn Spotify này!\n\nBot chỉ h
 play_18: "🔊 **Không có cuộc gọi thoại đang hoạt động**\n\nĐể sử dụng phát nhạc cưỡng bức (force play), cần có cuộc gọi thoại đang diễn ra."
 play_19: "Tôi không nghĩ đây là một URL có thể phát trực tuyến. Nếu bạn tin rằng URL này phát được, hãy sử dụng lệnh /stream <url>."
 
+
 # Playlist
 playlist_1: "📋 **Cách sử dụng:** /play [tên bài hát hoặc liên kết YouTube hoặc trả lời tệp âm thanh]\n\nNếu bạn muốn phát danh sách phát từ máy chủ bot! Hãy nhấn vào nút bên dưới."
 playlist_2: "🔄 Đang lấy danh sách phát của bạn... vui lòng chờ!"
@@ -187,7 +189,9 @@ playlist_23: "🗑️ Tất cả bài hát đã được xóa khỏi danh sách 
 playlist_24: "🪄 Bài hát đã được xóa khỏi danh sách phát của bạn."
 playlist_25: "⏱️ Vui lòng chờ\n🗑️ Đang xóa danh sách phát của bạn...."
 
+
 saavn_1: "😞 Xin lỗi! Hiện tại bot không thể phát liên kết Podcast từ Saavn."
+
 
 # Playmode
 playmode_1: "🎮 Chọn chế độ bạn muốn sử dụng để phát các truy vấn trong nhóm của bạn [{0}]."
@@ -246,7 +250,6 @@ V_C_2: "**Tên:** {0}\n    **ID:** {1}\n    **Tên người dùng:** {2}\n    **
 V_C_3: "🚫 Không có ai đang tham gia cuộc gọi thoại."
 V_C_4: "[🔗 Bạn có thể kiểm tra tất cả thông tin người tham gia cuộc gọi thoại tại đây]({0})"
 V_C_5: "❌ Hiện không có cuộc gọi nào đang diễn ra trong cuộc trò chuyện này. Dùng lệnh /mocall để bot mở cuộc gọi nhóm."
-
 
 # misc
 misc_1: "🤖 Bot đã tự động xóa hàng chờ và rời khỏi cuộc gọi thoại vì không có ai đang nghe nhạc trong cuộc gọi."
@@ -437,21 +440,19 @@ heroku_14: "⚠️ Lỗi lệnh git."
 heroku_15: "❌ Kho lưu trữ git không hợp lệ."
 
 # Private Bot Mode
-heroku_1: "🔑 Vui lòng đảm bảo **Heroku API Key** và **Tên ứng dụng** đã được cấu hình chính xác trên Heroku."
-heroku_2: "📜 Bạn chỉ có thể lấy nhật ký từ các ứng dụng Heroku."
-heroku_3: "**CÁCH DÙNG:**\n/get_var [Tên biến]"
-heroku_4: "🚫 Không tìm thấy biến nào như vậy."
-heroku_5: "❌ Không tìm thấy tệp .env."
-heroku_6: "**CÁCH DÙNG:**\n/del_var [Tên biến]"
-heroku_7: "✅ Đã xóa {0}."
-heroku_8: "**CÁCH DÙNG:**\n/set_var [Tên biến] [Giá trị]"
-heroku_9: "✅ {0} đã được cập nhật thành công."
-heroku_10: "✅ {0} đã được thêm thành công."
-heroku_11: "🛠️ Chỉ dành cho các ứng dụng Heroku."
-heroku_12: "🔍 Đang kiểm tra mức sử dụng Heroku... vui lòng đợi!"
-heroku_13: "🔄 Đang kiểm tra các bản cập nhật khả dụng..."
-heroku_14: "⚠️ Lỗi lệnh git."
-heroku_15: "❌ Kho lưu trữ git không hợp lệ."
+pbot_1: "**CÁCH DÙNG:**\n/authorize [CHAT_ID]"
+pbot_2: "**CÁCH DÙNG:**\n/unauthorize [CHAT_ID]"
+pbot_3: "✅ Đã thêm cuộc trò chuyện vào danh sách được ủy quyền."
+pbot_4: "✅ Đã xóa cuộc trò chuyện khỏi danh sách được ủy quyền."
+pbot_5: "🔒 Cuộc trò chuyện đã có trong danh sách được ủy quyền từ trước."
+pbot_6: "🚫 Không có cuộc trò chuyện nào như vậy trong danh sách được ủy quyền."
+pbot_7: "❌ Không thể xác minh chat_id.\n\nHãy đảm bảo đó là một số và đúng định dạng. Không sử dụng tên người dùng hoặc liên kết nhóm."
+pbot_8: "⏳ Vui lòng đợi... Đang lấy danh sách các cuộc trò chuyện được ủy quyền..."
+pbot_9: "**<b>Danh sách cuộc trò chuyện đã lấy:</b>**\n\n"
+pbot_10: "🤖 Cuộc trò chuyện riêng tư"
+pbot_11: "🔍 Không tìm thấy cuộc trò chuyện nào được ủy quyền."
+pbot_12: "🚫 Chế độ bot riêng tư hiện đang tắt.\n\nĐể sử dụng bot ở chế độ riêng tư, hãy đặt **PRIVATE_BOT_MODE** = **TRUE**"
+pbot_13: "\n**<b>Các cuộc trò chuyện chưa được lấy:</b>**\n\n"
 
 # Global Ban Messages
 gban_1: "🚫 Bạn không thể tự gban chính mình được! Gà thật đấy!"
@@ -478,7 +479,7 @@ AUTH_HELPER: |
   <b>✧ {AUTHUSERS_COMMAND}</b> - Kiểm tra DANH SÁCH ỦY QUYỀN của nhóm.
 
 ADMIN_HELPER: |
-  <b> c là viết tắt của chế độ phát qua kênh (channel play)</b>
+  <b>c là viết tắt của chế độ phát qua kênh</b>
   
   <b>✧ {PAUSE_COMMAND}</b> - Tạm dừng bài hát đang phát.
   <b>✧ {RESUME_COMMAND}</b> - Tiếp tục phát bài hát đã tạm dừng.
