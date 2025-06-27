@@ -156,13 +156,13 @@ RESUME_COMMAND:
 MUTE_COMMAND:
   ar: ["اسكت"]
   ckb: ["بێدەنگکردن"]
-  en: ["cmute", "mute"]
+  en: ["cmutebot", "mutebot"]
   tr: ["sustur", "csustur", "ksustur"]
 
 UNMUTE_COMMAND:
   ar: ["اتكلم"]
   ckb: ["لادانی بێدەنگی"]
-  en: ["unmute", "cunmute"]
+  en: ["unmutebot", "cunmutebot"]
   tr: ["unmute", "cunmute"]
 
 STOP_COMMAND:
