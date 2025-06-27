@@ -76,7 +76,7 @@ async def list_stream_handler(client, message: Message):
         text += f"**{idx}. {x['title']}**\n🔗 `{x['url']}`\n📄 {x['description']}\n\n"
     await message.reply_text(text, disable_web_page_preview=True)
 
-@app.on_message(command("editstream") & filters.user(list(SUDOERS)) & ~BANNED_USERS)
+@app.on_message(filters.command("editstream") & filters.user(list(SUDOERS)) & ~BANNED_USERS)
 async def edit_stream_handler(client, message: Message):
     if len(message.command) < 2 or "|" not in message.text:
         return await message.reply_text(
