@@ -7,13 +7,20 @@ from pyrogram import Client, filters
 from pyrogram.raw.functions.channels import GetFullChannel
 from pyrogram.raw.functions.messages import GetFullChat
 from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat, InputPeerUser
-from SANKIXD.utils.database import *
+from YukkiMusic.utils.database import *
 from pyrogram.raw.functions.phone import CreateGroupCall, DiscardGroupCall
-from pyrogram.errors import UserAlreadyParticipant, UserNotParticipant, ChatAdminRequired
-from SANKIXD import app, Userbot
+from pyrogram.errors import (
+    ChannelsTooMuch,
+    ChatAdminRequired,
+    FloodWait,
+    InviteRequestSent,
+    UserAlreadyParticipant,
+    UserNotParticipant,
+)
+from YukkiMusic import app, userbot
 from typing import List, Union
 from pyrogram import filters
-from SANKIXD.core.call import SANKI
+from YukkiMusic.core.call import Yukki
 from pyrogram.types import VideoChatEnded, Message
 from pytgcalls import PyTgCalls 
 
@@ -91,13 +98,13 @@ import traceback
 
 @app.on_message(filters.command(["vcinfo"], ["/", "!"]))
 async def strcall(client, message):
-    assistant = await group_assistant(SANKI, message.chat.id)
+    assistant = await group_assistant(Yukki, message.chat.id)
     userbot = await get_assistant(message.chat.id)
     userbot_id = userbot.id
 
     try:
         # Tham gia call bằng assistant
-        await safe_join_call(assistant, message.chat.id, "./SANKIXD/assets/call.mp3")
+        await safe_join_call(assistant, message.chat.id, "./Yukki/assets/call.mp3")
 
         try:
             participants = await assistant.get_participants(message.chat.id)
