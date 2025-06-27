@@ -35,9 +35,9 @@ from config import BANNED_USERS
 async def safe_join_call(assistant, chat_id, audio_path):
    # \"\"\"Safe method to join call with multiple API attempts\"\"\"
     # Prepare audio stream
-    if AudioPiped != str:
+    if MediaStream != str:
         try:
-            stream = AudioPiped(audio_path)
+            stream = MediaStream(audio_path)
         except:
             stream = audio_path
     else:
