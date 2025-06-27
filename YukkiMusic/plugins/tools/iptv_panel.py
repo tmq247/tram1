@@ -58,7 +58,8 @@ async def iptv_play_handler(client, query: CallbackQuery):
             return await query.answer("❌ Không tìm thấy kênh!", show_alert=True)
 
         await query.answer()
-        
+        # 🧹 Xóa tin nhắn chứa menu kênh
+        await query.message.delete()
         # Gửi lệnh /stream URL như người dùng tự gõ
         first_userbot = userbot.clients[0]
 
