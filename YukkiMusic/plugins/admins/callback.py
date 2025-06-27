@@ -138,7 +138,12 @@ async def pages_markup(client, query, _):
 @languageCB
 async def admin_callback(client, query, _):
     callback_data = query.data.strip()
-    callback_request = callback_data.split(None, 1)[1]
+    #callback_request = callback_data.split(None, 1)[1]
+    try:
+        callback_request = callback_data.split(None, 1)[1]
+    except IndexError:
+        callback_request = None
+        print(">> callback_data:", callback_data)
     command, chat = callback_request.split("|")
     chat_id = int(chat)
     if not await is_active_chat(chat_id):
