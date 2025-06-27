@@ -140,7 +140,7 @@ async def admin_callback(client, query, _):
     callback_data = query.data.strip()
     #callback_request = callback_data.split(None, 1)[1]
     try:
-        _, callback_request = callback_data.split(None, 1)
+        callback_request = callback_data.split(None, 1)
         if "|" not in callback_request:
             raise ValueError("Invalid callback_request")
         command, chat = callback_request.split("|")
