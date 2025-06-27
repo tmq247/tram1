@@ -31,6 +31,7 @@ from pytgcalls.types import (
     MediaStream,
     StreamEnded,
 )
+from config import BANNED_USERS
 async def safe_join_call(assistant, chat_id, audio_path):
    # \"\"\"Safe method to join call with multiple API attempts\"\"\"
     # Prepare audio stream
