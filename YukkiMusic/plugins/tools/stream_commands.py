@@ -65,7 +65,7 @@ async def del_stream_handler(client, message: Message):
     save_streams(filtered)
     await message.reply_text(f"🗑️ Đã xóa stream: **{name}**")
 
-@app.on_message(filters.command("liststream") & filters.user(SUDOERS) & ~BANNED_USERS)
+@app.on_message(filters.command("liststream") & filters.user(list(SUDOERS)) & ~BANNED_USERS)
 async def list_stream_handler(client, message: Message):
     streams = load_streams()
     if not streams:
