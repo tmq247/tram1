@@ -10,7 +10,7 @@ def hello():
     return "Radhe Radhe"
 
 
-log = logging.getLogger("werkzeug")
+log = logging.getLogger("tmq")
 log.setLevel(logging.ERROR)
 app.logger.disabled = True
 
