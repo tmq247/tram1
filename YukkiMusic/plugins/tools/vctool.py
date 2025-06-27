@@ -22,36 +22,15 @@ from typing import List, Union
 from pyrogram import filters
 from YukkiMusic.core.call import Yukki
 from pyrogram.types import VideoChatEnded, Message
-from pytgcalls import PyTgCalls 
-
-# Import với compatibility checking
-try:
-    from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
-    print("✅ New stream types imported in vctools")
-except ImportError:
-    try:
-        from pytgcalls.types import AudioPiped, AudioVideoPiped
-        print("✅ Alternative stream types imported in vctools")
-    except ImportError:
-        AudioPiped = str
-        AudioVideoPiped = str
-        print("⚠️ Using string fallback in vctools")
-
-try:
-    from pytgcalls.exceptions import AlreadyJoined, NotInCall, TelegramServerError
-    NoActiveGroupCall = NotInCall
-    AlreadyJoinedError = AlreadyJoined
-    print("✅ New exceptions imported in vctools")
-except ImportError:
-    try:
-        from pytgcalls.exceptions import NoActiveGroupCall, TelegramServerError, AlreadyJoinedError
-        print("✅ Old exceptions imported in vctools")
-    except ImportError:
-        NoActiveGroupCall = Exception
-        TelegramServerError = Exception
-        AlreadyJoinedError = Exception
-        print("⚠️ Using fallback exceptions in vctools")
-
+from ntgcalls import TelegramServerError
+from pytgcalls import PyTgCalls, filters
+from pytgcalls.exceptions import NoActiveGroupCall
+from pytgcalls.types import (
+    ChatUpdate,
+    GroupCallConfig,
+    MediaStream,
+    StreamEnded,
+)
 async def safe_join_call(assistant, chat_id, audio_path):
    # \"\"\"Safe method to join call with multiple API attempts\"\"\"
     # Prepare audio stream
@@ -92,9 +71,7 @@ async def safe_leave_call(assistant, chat_id):
     
     return False
 
-from pyrogram import Client, filters
-import asyncio
-import traceback
+############################################
 
 @app.on_message(filters.command(["vcinfo"], ["/", "!"]))
 async def strcall(client, message):
