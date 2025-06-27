@@ -40,7 +40,7 @@ from YukkiMusic.utils.stream.stream import stream
 @app.on_message(
     command(
         "PLAY_COMMAND",
-        prefixes=["/", "!", "%", ",", "@", "#", ""],
+        prefixes=["/", "!", "%", ",", "@", "#"],
     )
     & filters.group
     & ~BANNED_USERS
