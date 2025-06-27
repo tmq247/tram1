@@ -22,7 +22,7 @@ def save_streams(data):
     with open(STREAM_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
-@app.on_message(filters.command("addstream") & filters.user(SUDOERS) & ~BANNED_USERS)
+@app.on_message(filters.command("addstream") & filters.user(list(SUDOERS)) & ~BANNED_USERS)
 async def add_stream_handler(client, message: Message):
     if len(message.command) < 2 or "|" not in message.text:
         return await message.reply_text(
@@ -50,7 +50,7 @@ async def add_stream_handler(client, message: Message):
     save_streams(streams)
     await message.reply_text(f"✅ Đã thêm stream: **{title}**")
 
-@app.on_message(filters.command("delstream") & filters.user(SUDOERS) & ~BANNED_USERS)
+@app.on_message(filters.command("delstream") & filters.user(list(SUDOERS)) & ~BANNED_USERS)
 async def del_stream_handler(client, message: Message):
     if len(message.command) < 2:
         return await message.reply_text("📤 Dùng đúng cú pháp:\n`/delstream Tên_Stream`", quote=True)
@@ -76,7 +76,7 @@ async def list_stream_handler(client, message: Message):
         text += f"**{idx}. {x['title']}**\n🔗 `{x['url']}`\n📄 {x['description']}\n\n"
     await message.reply_text(text, disable_web_page_preview=True)
 
-@app.on_message(command("editstream") & user(SUDOERS) & ~BANNED_USERS)
+@app.on_message(command("editstream") & filters.user(list(SUDOERS)) & ~BANNED_USERS)
 async def edit_stream_handler(client, message: Message):
     if len(message.command) < 2 or "|" not in message.text:
         return await message.reply_text(
