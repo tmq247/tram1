@@ -9,7 +9,7 @@ from pyrogram.types import (
 )
 
 from config import BANNED_USERS
-from YukkiMusic import app
+from YukkiMusic import app, userbot
 
 STREAM_FILE = "streams.json"
 
@@ -60,7 +60,7 @@ async def iptv_play_handler(client, query: CallbackQuery):
         await query.answer()
         
         # Gửi lệnh /stream URL như người dùng tự gõ
-        await client.send_message(
+        await userbot.send_message(
             chat_id=query.message.chat.id,
             text=f"/stream {selected['url']}",
             reply_to_message_id=query.message.id
