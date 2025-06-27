@@ -23,7 +23,7 @@ from pyrogram import filters
 from YukkiMusic.core.call import Yukki
 from pyrogram.types import VideoChatEnded, Message
 from ntgcalls import TelegramServerError
-from pytgcalls import PyTgCalls, filters
+from pytgcalls import PyTgCalls
 from pytgcalls.exceptions import NoActiveGroupCall
 from pytgcalls.types import (
     ChatUpdate,
@@ -73,7 +73,7 @@ async def safe_leave_call(assistant, chat_id):
 
 ############################################
 
-@app.on_message(command(["vcinfo"], ["/", "!"]))
+@app.on_message(command("vcinfo") & filters.group & ~BANNED_USERS)
 async def strcall(client, message):
     assistant = await group_assistant(Yukki, message.chat.id)
     userbot = await get_assistant(message.chat.id)
@@ -181,7 +181,7 @@ async def get_group_call(
     await app.send_message("**Cuộc gọi nhóm đang bị tắt** {err_msg}")
     return False
 
-@app.on_message(command(["vcstart","startvc"], ["/", "!"]))
+@app.on_message(command(["vcstart","startvc"]) & filters.group & ~BANNED_USERS)
 async def start_group_call(c: Client, m: Message):
     chat_id = m.chat.id
     assistant = await get_assistant(chat_id)
@@ -247,7 +247,7 @@ async def start_group_call(c: Client, m: Message):
       except:
          await msg.edit_text("Cấp quyền quản lý cuộc gọi nhóm cho bot, userbot và thử lại⚡")
 
-@app.on_message(command(["vcend","endvc"], ["/", "!"]))
+@app.on_message(command(["vcend","endvc"]) & filters.group & ~BANNED_USERS)
 async def stop_group_call(c: Client, m: Message):
     chat_id = m.chat.id
     assistant = await get_assistant(chat_id)
