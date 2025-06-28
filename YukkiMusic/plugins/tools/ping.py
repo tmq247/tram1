@@ -19,10 +19,30 @@ from YukkiMusic.utils import bot_sys_stats
 from YukkiMusic.utils.decorators.language import language
 from YukkiMusic.utils.inline import support_group_markup
 
+import asyncio
+
+async def ping_telegram_server():
+    proc = await asyncio.create_subprocess_shell(
+        "ping -c 1 telegram.org",  # Hoặc thay bằng IP cụ thể nếu bạn biết
+        stdout=asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.PIPE,
+    )
+    stdout, _ = await proc.communicate()
+    output = stdout.decode()
+
+    if "time=" in output:
+        try:
+            # Trích xuất giá trị time
+            time_ms = output.split("time=")[-1].split(" ")[0]
+            return f"{time_ms} ms"
+        except Exception:
+            return "Không xác định"
+    return "Ping thất bại"
 
 @app.on_message(command("PING_COMMAND") & ~BANNED_USERS)
 @language
 async def ping_com(client, message: Message, _):
+    tg_ping = await ping_telegram_server()
     response = await message.reply_photo(
         photo=PING_IMG_URL,
         caption=_["ping_1"].format(app.mention),
@@ -40,6 +60,7 @@ async def ping_com(client, message: Message, _):
             CPU,
             DISK,
             pytgping,
+            tg_ping,
         ),
         reply_markup=support_group_markup(_),
     )
