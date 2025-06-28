@@ -103,7 +103,7 @@ def PlayWrapper(command):
             is_call_active = (await app.get_chat(chat_id)).is_call_active
             if not is_call_active:
                 return await message.reply_text(
-                    "**No active video chat found **\n\nPlease make sure you started the voicechat."
+                    "**Chưa mở cuộc gọi nhóm. *\n\nMở cuộc gọi nhóm bằng lệnh !mocall."
                 )
         except Exception:
             pass
