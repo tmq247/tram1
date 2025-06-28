@@ -219,7 +219,7 @@ logger_text: "**{bot_mention} Nhật ký phát nhạc**\n\n**ID nhóm:** `{chat_
 
 # Ping
 ping_1: "» {0} đang kiểm tra ping..."
-ping_2: "**» PONG**: `{0}`ms \n\n<b><u>Thông số hệ thống {1} :</u></b>\n\n🌋 Thời gian hoạt động : {2}\n🌋 RAM : {3} \n🌋 CPU : {4} \n🌋 Ổ đĩa : {5} \n🌋 Py-tgcalls : `{6} ms`"
+ping_2: "**» PONG**: `{0}`ms \n\n<b><u>Thông số hệ thống {1} :</u></b>\n\n🌋 Thời gian hoạt động : {2}\n🌋 RAM : {3} \n🌋 CPU : {4} \n🌋 Ổ đĩa : {5} \n🌋 Py-tgcalls : `{6} ms`\nPing : {7} ms"
 
 # Song
 song_1: "🚫 Bạn chỉ có thể tải nhạc hoặc video từ YouTube trong cuộc trò chuyện riêng. Vui lòng bắt đầu cuộc trò chuyện riêng với tôi."
