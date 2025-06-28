@@ -163,7 +163,7 @@ UNMUTE_COMMAND:
   ar: ["اتكلم"]
   ckb: ["لادانی بێدەنگی"]
   en: ["unmutebot", "cunmutebot"]
-  tr: ["unmute", "cunmute"]
+  tr: ["unmutebot", "cunmutebot"]
 
 STOP_COMMAND:
   ar: ["ايقاف", "انهاء"]
