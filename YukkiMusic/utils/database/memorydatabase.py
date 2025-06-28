@@ -570,25 +570,25 @@ async def save_video_bitrate(chat_id: int, bitrate: str):
 
 
 async def get_aud_bit_name(chat_id: int) -> str:
-    return audio.get(chat_id, "STUDIO")
+    return audio.get(chat_id, "MEDIUM")
 
 
 async def get_vid_bit_name(chat_id: int) -> str:
-    return video.get(chat_id, "UHD_4K")
+    return video.get(chat_id, "SD_480p")
 
 
 async def get_audio_bitrate(chat_id: int) -> str:
-    mode = audio.get(chat_id, "STUDIO")
+    mode = audio.get(chat_id, "MEDIUM")
     return {
         "STUDIO": _types.AudioQuality.STUDIO,
         "HIGH": _types.AudioQuality.HIGH,
         "MEDIUM": _types.AudioQuality.MEDIUM,
         "LOW": _types.AudioQuality.LOW,
-    }.get(mode, _types.AudioQuality.STUDIO)
+    }.get(mode, _types.AudioQuality.MEDIUM)
 
 
 async def get_video_bitrate(chat_id: int) -> str:
-    mode = video.get(chat_id, "UHD_4K")
+    mode = video.get(chat_id, "SD_480p")
     return {
         "UHD_4K": _types.VideoQuality.UHD_4K,
         "QHD_2K": _types.VideoQuality.QHD_2K,
@@ -596,4 +596,4 @@ async def get_video_bitrate(chat_id: int) -> str:
         "HD_720p": _types.VideoQuality.HD_720p,
         "SD_480p": _types.VideoQuality.SD_480p,
         "SD_360p": _types.VideoQuality.SD_360p,
-    }.get(mode, _types.VideoQuality.UHD_4K)
+    }.get(mode, _types.VideoQuality.SD_480p)
