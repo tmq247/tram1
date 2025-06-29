@@ -23,7 +23,7 @@ import asyncio
 
 async def ping_telegram_server():
     proc = await asyncio.create_subprocess_shell(
-        "ping -c 1 telegram.org",  # Hoặc thay bằng IP cụ thể nếu bạn biết
+        "ping -c 1 149.154.167.220",  # Hoặc thay bằng IP cụ thể nếu bạn biết
         stdout=asyncio.subprocess.PIPE,
         stderr=asyncio.subprocess.PIPE,
     )
