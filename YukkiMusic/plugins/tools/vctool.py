@@ -203,7 +203,7 @@ async def start_group_call(c: Client, m: Message):
     ass = await assistant.get_me()
     assid = ass.id
     assum = ass.username
-    bot_member = await client.get_chat_member(chat_id, assid)
+    bot_member = await app.get_chat_member(chat_id, assid)
     if assistant is None:
         await app.send_message(chat_id, "Lỗi userbot")
         return
