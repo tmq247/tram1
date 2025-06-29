@@ -163,6 +163,20 @@ def command(commands: Union[str, List[str]]):
 
 
   ################################################
+async def adminbot(m: Message):
+    try:
+        bot_id = (await userbot.get_me()).id
+        bot_member = await client.get_chat_member(message.chat.id, bot_id)
+
+        if bot_member.status not in [ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER]:
+            return await message.reply_text("❌ Bot không phải là quản trị viên trong nhóm này.")
+
+        if not bot_member.privileges or not bot_member.privileges.can_manage_video_chats:
+            return await message.reply_text("⚠️ Bot là quản trị viên nhưng không có quyền quản lý video chats.")
+    except Exception as e:
+        return await message.reply_text(f"Đã xảy ra lỗi khi kiểm tra quyền của bot: {e}")
+
+
 async def get_group_call(
     client: Client, message: Message, err_msg: str = ""
 ) -> Optional[InputGroupCall]:
@@ -188,15 +202,25 @@ async def start_group_call(c: Client, m: Message):
     assistant = await get_assistant(chat_id)
     ass = await assistant.get_me()
     assid = ass.id
+    assum = ass.username
+    bot_member = await client.get_chat_member(chat_id, assid)
     if assistant is None:
         await app.send_message(chat_id, "Lỗi userbot")
         return
+
     msg = await app.send_message(chat_id, "Đang mở cuộc gọi nhóm..")
     try:
         if group_call := (await get_group_call(assistant, m)):  
             return await msg.edit_text("Cuộc gọi nhóm đã được mở trước đó.")
     # Nếu chưa có trong storage, thử lấy thông tin chat để lưu vào storage
         await assistant.get_chat(chat_id)
+        try:
+            #if bot_member.status not in [ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER]:
+            #return await message.reply_text("❌ Bot không phải là quản trị viên trong nhóm này.")
+            if not bot_member.privileges or not bot_member.privileges.can_manage_video_chats:
+                return await message.reply_text("⚠️ Bot là quản trị viên nhưng không có quyền quản lý video chats.")
+        except Exception as e:
+            return await message.reply_text(f"Đã xảy ra lỗi khi kiểm tra quyền của bot: {e}")
         peer = await assistant.resolve_peer(chat_id)
         await assistant.invoke(
             CreateGroupCall(
