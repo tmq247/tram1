@@ -31,15 +31,19 @@ async def testspeed(m):
         result = await asyncio.to_thread(test.results.dict)
 
         m = await m.edit("↻ Sharing SpeedTest results")
+        return result
     except Exception as e:
         return await m.edit(str(e))
 
-    return result
+    return None
 
 
 @app.on_message(command("SPEEDTEST_COMMAND") & SUDOERS)
 async def speedtest_function(client, message):
     m = await message.reply_text("ʀᴜɴɴɪɴɢ sᴘᴇᴇᴅᴛᴇsᴛ")
+    result = await testspeed(m)
+    if not result:
+        return  # đã xử lý lỗi trong testspeed rồi
     result = await testspeed(m)
     output = f"""**Speedtest Results**
     
