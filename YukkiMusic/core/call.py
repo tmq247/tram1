@@ -80,7 +80,7 @@ class Call:
         for client in userbot.clients:
             pycall = PyTgCalls(
                 client,
-                cache_duration=100,
+                cache_duration=200,
             )
             self.calls.append(pycall)
 
