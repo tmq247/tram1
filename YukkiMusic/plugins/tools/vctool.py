@@ -4,6 +4,7 @@ from typing import Optional
 from random import randint
 from pyrogram.types import Message, ChatPrivileges
 from pyrogram import Client, filters
+from pyrogram.enums import ChatMemberStatus, ChatType
 from pyrogram.raw.functions.channels import GetFullChannel
 from pyrogram.raw.functions.messages import GetFullChat
 from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat, InputPeerUser
