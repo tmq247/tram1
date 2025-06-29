@@ -204,15 +204,15 @@ async def start_group_call(c: Client, m: Message):
     ass = await assistant.get_me()
     assid = ass.id
     assum = ass.username
-    bot_member = await app.get_chat_member(chat_id, assid)
+    bot_member = await assistant.get_chat_member(chat_id, assid)
     if assistant is None:
         await app.send_message(chat_id, "Lỗi userbot")
         return
     try:
         if bot_member.status not in [ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER]:
-            return await app.send_message(chat_id, f"""❌ Userbot không có quyền mở call trong nhóm này. Thêm userbot {assum} làm qtv với quyền quản lý call.""")
+            return await app.send_message(chat_id, f"""❌ Userbot không có quyền mở call trong nhóm này. Thêm userbot @{assum} làm qtv với quyền quản lý call.""")
         if not bot_member.privileges or not bot_member.privileges.can_manage_video_chats:
-            return await app.send_message(chat_id, f"""⚠️ Userbot {assum} là quản trị viên nhưng không có quyền quản lý call.""")
+            return await app.send_message(chat_id, f"""⚠️ Userbot @{assum} là quản trị viên nhưng không có quyền quản lý call.""")
     except Exception as e:
         return await app.send_message(chat_id, f"Đã xảy ra lỗi khi kiểm tra quyền của userbot: {e}")
 
