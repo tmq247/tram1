@@ -57,7 +57,7 @@ def PlayWrapper(command):
         if PRIVATE_BOT_MODE:
             if not await is_served_private_chat(message.chat.id):
                 await message.reply_text(
-                    "**PRIVATE MUSIC BOT**\n\nOnly For Authorized chats from the owner ask my owner to allow your chat first."
+                    "**BOT NHẠC TRẢ PHÍ**\n\nChỉ Dành Cho Các Cuộc Trò Chuyện Đã Được Chủ Sở Hữu Cho Phép — Hãy Liên Hệ Chủ Sở Hữu Để Được Phép Dùng Bot Trong Nhóm Của Bạn."
                 )
                 return await app.leave_chat(message.chat.id)
         if await is_commanddelete_on(message.chat.id):
