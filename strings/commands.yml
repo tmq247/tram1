@@ -325,19 +325,19 @@ AUTHORIZE_COMMAND:
   ar: ["سماح"]
   ckb: ["ڕێگەپێدان"]
   en: ["authorize"]
-  tr: ["authorize"]
+  tr: ["acgr"]
 
 UNAUTHORIZE_COMMAND:
   ar: ["رفض"]
   ckb: ["لادانی ڕێگەپێدان"]
   en: ["unauthorize"]
-  tr: ["unauthorize"]
+  tr: ["delgr"]
 
 AUTHORIZED_COMMAND:
   ar: ["المسوحين"]
   ckb: ["ڕێگەپێدراوەکان"]
   en: ["authorized"]
-  tr: ["authorized"]
+  tr: ["lgr"]
 
 BLOCK_COMMAND:
   ar: ["حظر"]
