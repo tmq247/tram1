@@ -29,7 +29,10 @@ from YukkiMusic.utils.database import (
     is_served_private_chat,
 )
 from YukkiMusic.utils.inline import botplaylist_markup
+import asyncio
 
+# Lưu các task theo chat_id
+leave_tasks = {}
 links = {}
 
 
