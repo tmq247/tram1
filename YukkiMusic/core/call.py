@@ -327,12 +327,12 @@ class Call:
             except Exception:
                 traceback.print_exc()
                 raise AssistantErr(
-                    "**Không tìm thấy cuộc gọi nhóm**\n\nHãy mở cuộc nhóm nhóm bằng lệnh /vcstart, nếu vẫn tiếp tục lỗi dùng lệnh /restart"
+                    "**Không tìm thấy cuộc gọi nhóm**\n\nHãy mở cuộc nhóm nhóm bằng lệnh /mocall, nếu vẫn tiếp tục lỗi dùng lệnh /restart"
                 )
 
         except NoActiveGroupCall:
             raise AssistantErr(
-                "**Không tìm thấy cuộc gọi nhóm**\n\nHãy mở cuộc nhóm nhóm bằng lệnh /vcstart, nếu vẫn tiếp tục lỗi dùng lệnh /restart"
+                "**Không tìm thấy cuộc gọi nhóm**\n\nHãy mở cuộc nhóm nhóm bằng lệnh /mocall, nếu vẫn tiếp tục lỗi dùng lệnh /restart"
             )
         except TelegramServerError:
             raise AssistantErr(
