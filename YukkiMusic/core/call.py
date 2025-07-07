@@ -327,16 +327,16 @@ class Call:
             except Exception:
                 traceback.print_exc()
                 raise AssistantErr(
-                    "**No Active Voice Chat Found**\n\nPlease make sure group's voice chat is enabled. If already enabled, please end it and start fresh voice chat again and if the problem continues, try /restart"
+                    "**Không tìm thấy cuộc gọi nhóm**\n\nHãy mở cuộc nhóm nhóm bằng lệnh /vcstart, nếu vẫn tiếp tục lỗi dùng lệnh /restart"
                 )
 
         except NoActiveGroupCall:
             raise AssistantErr(
-                "**No Active Voice Chat Found**\n\nPlease make sure group's voice chat is enabled. If already enabled, please end it and start fresh voice chat again and if the problem continues, try /restart"
+                "**Không tìm thấy cuộc gọi nhóm**\n\nHãy mở cuộc nhóm nhóm bằng lệnh /vcstart, nếu vẫn tiếp tục lỗi dùng lệnh /restart"
             )
         except TelegramServerError:
             raise AssistantErr(
-                "**TELEGRAM SERVER ERROR**\n\nPlease restart Your voicechat."
+                "**LỖI SERVER TELEGRAM **\n\nVui lòng khởi động lại cuộc gọi nhóm."
             )
         await add_active_chat(chat_id)
         await music_on(chat_id)
