@@ -44,7 +44,7 @@ dependencies = [
     "spotipy==2.25.1",
     "TgCrypto==1.2.5",
     "uvloop==0.21.0",
-    "Flask==3.1.1",
+    "Flask==3.1.2",
     "gunicorn==23.0.0",
     "yt-dlp==2025.6.30",
     "py-yt-search==0.3",
