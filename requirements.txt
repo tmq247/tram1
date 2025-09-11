@@ -9,7 +9,7 @@ lyricsgenius==3.6.4
 ntgcalls==2.0.5
 pillow==11.2.1
 pykeyboard2==0.1.6
-pymongo==4.13.2
+pymongo==4.15.0
 psutil==7.0.0
 py-tgcalls==2.2.4
 python-dotenv==1.1.1
