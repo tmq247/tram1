@@ -52,10 +52,10 @@ def git():
         LOGGER(__name__).info("Invalid Git Command")
     except InvalidGitRepositoryError:
         repo = Repo.init()
-        if "alpha" in repo.remotes:
-            origin = repo.remote("alpha")
+        if "origin" in repo.remotes:
+            origin = repo.remote("origin")
         else:
-            origin = repo.create_remote("alpha", upstream_repo)
+            origin = repo.create_remote("origin", upstream_repo)
         origin.fetch()
         repo.create_head(
             config.UPSTREAM_BRANCH,
@@ -67,11 +67,11 @@ def git():
         repo.heads[config.UPSTREAM_BRANCH].checkout(True)
 
         try:
-            repo.create_remote("alpha", config.UPSTREAM_REPO)
+            repo.create_remote("origin", config.UPSTREAM_REPO)
         except Exception:
             pass
 
-    nrs = repo.remote("alpha")
+    nrs = repo.remote("origin")
     nrs.fetch(config.UPSTREAM_BRANCH)
 
     try:
