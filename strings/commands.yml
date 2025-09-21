@@ -325,7 +325,7 @@ AUTHORIZE_COMMAND:
   ar: ["سماح"]
   ckb: ["ڕێگەپێدان"]
   en: ["authorize"]
-  tr: ["acgr"]
+  tr: ["addgr"]
 
 UNAUTHORIZE_COMMAND:
   ar: ["رفض"]
@@ -337,7 +337,7 @@ AUTHORIZED_COMMAND:
   ar: ["المسوحين"]
   ckb: ["ڕێگەپێدراوەکان"]
   en: ["authorized"]
-  tr: ["lgr"]
+  tr: ["listgr"]
 
 BLOCK_COMMAND:
   ar: ["حظر"]
