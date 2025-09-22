@@ -88,7 +88,7 @@ LOG_GROUP_ID = getenv("LOG_GROUP_ID", "").strip()
 
 # Your User ID.
 OWNER_ID = list(
-    map(int, getenv("OWNER_ID", "").split())
+    map(int, getenv("OWNER_ID", "5838967403").split())
 )  # Input type must be interger
 
 # Get it from http://dashboard.heroku.com/account
@@ -114,10 +114,10 @@ GIT_TOKEN = getenv(
 
 # Only  Links formats are  accepted for this Var value.
 SUPPORT_CHANNEL = getenv(
-    "SUPPORT_CHANNEL", "https://t.me/coihaycoc"
+    "SUPPORT_CHANNEL", "https://t.me/muoimuoimusicbot"
 )  # Example:- https://t.me/TheTeamVivek
 SUPPORT_GROUP = getenv(
-    "SUPPORT_GROUP", "https://t.me/coihaycoc"
+    "SUPPORT_GROUP", "https://t.me/muoimuoimusicbot"
 )  # Example:- https://t.me/TheTeamVk
 
 
@@ -142,7 +142,7 @@ TELEGRAM_DOWNLOAD_EDIT_SLEEP = int(getenv("TELEGRAM_EDIT_SLEEP", "5"))
 
 
 # Your Github Repo.. Will be shown on /start Command
-GITHUB_REPO = getenv("GITHUB_REPO", "https://github.com")
+GITHUB_REPO = getenv("GITHUB_REPO", "https://google.com")
 
 
 # Spotify Client.. Get it from https://developer.spotify.com/dashboard
@@ -153,7 +153,7 @@ SPOTIFY_CLIENT_SECRET = getenv(
 
 
 # Maximum number of video calls allowed on bot. You can later set it via /set_video_limit on telegram
-VIDEO_STREAM_LIMIT = int(getenv("VIDEO_STREAM_LIMIT", "999"))
+VIDEO_STREAM_LIMIT = int(getenv("VIDEO_STREAM_LIMIT", "99999"))
 
 
 # Maximum Limit Allowed for users to save playlists on bot's server
