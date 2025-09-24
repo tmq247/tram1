@@ -539,7 +539,7 @@ wheels = [
 
 [[package]]
 name = "kurigram"
-version = "2.2.10"
+version = "2.2.12"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pyaes" },
@@ -1446,6 +1446,7 @@ dependencies = [
     { name = "tgcrypto" },
     { name = "uvloop" },
     { name = "yt-dlp" },
+    { name = "pyrotgfork" },
 ]
 
 [package.metadata]
