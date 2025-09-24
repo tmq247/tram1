@@ -266,114 +266,82 @@ async def song_helper_cb(client, query, _):
 
 @app.on_callback_query(filters.regex(pattern=r"song_download") & ~BANNED_USERS)
 @languageCB
-async def song_download_cb(client, query, _):
+async def song_download_cb(client, CallbackQuery, _):
     try:
-        await query.answer("ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ...")
-
-    except Exception:
+        await CallbackQuery.answer("Downloading")
+    except:
         pass
-
-    callback_data = query.data.strip()
-
+    callback_data = CallbackQuery.data.strip()
     callback_request = callback_data.split(None, 1)[1]
-
     stype, format_id, vidid = callback_request.split("|")
-
-    mystic = await query.edit_message_text(_["song_8"])
-
+    mystic = await CallbackQuery.edit_message_text(_["song_8"])
     yturl = f"https://www.youtube.com/watch?v={vidid}"
-
-    with yt_dlp.YoutubeDL({"quiet": True, "cookiefile": f"{cookies()}"}) as ytdl:
+    with yt_dlp.YoutubeDL({"quiet": True}) as ytdl:
         x = ytdl.extract_info(yturl, download=False)
-
     title = (x["title"]).title()
-
-    title = re.sub(r"\W+", " ", title)
-
-    thumb_image_path = await query.message.download()
-
+    title = re.sub("\W+", " ", title)
+    thumb_image_path = await CallbackQuery.message.download()
     duration = x["duration"]
-
     if stype == "video":
-        thumb_image_path = await query.message.download()
-
-        width = query.message.photo.width
-
-        height = query.message.photo.height
-
+        thumb_image_path = await CallbackQuery.message.download()
+        width = CallbackQuery.message.photo.width
+        height = CallbackQuery.message.photo.height
         try:
-            file_path = await youtube.download(
+            file_path = await YouTube.download(
                 yturl,
                 mystic,
                 songvideo=True,
                 format_id=format_id,
                 title=title,
             )
-
         except Exception as e:
             return await mystic.edit_text(_["song_9"].format(e))
-
         med = InputMediaVideo(
             media=file_path,
             duration=duration,
             width=width,
             height=height,
-            thumb=thumb_image_path if thumb_image_path else None,
+            thumb=thumb_image_path,
             caption=title,
             supports_streaming=True,
         )
-
         await mystic.edit_text(_["song_11"])
-
         await app.send_chat_action(
-            chat_id=query.message.chat.id,
-            action=enums.ChatAction.UPLOAD_VIDEO,
+            chat_id=CallbackQuery.message.chat.id,
+            action=ChatAction.UPLOAD_VIDEO,
         )
-
         try:
-            await query.edit_message_media(media=med)
-
-        except Exception:
-            traceback.print_exc()
-
+            await CallbackQuery.edit_message_media(media=med)
+        except Exception as e:
+            print(e)
             return await mystic.edit_text(_["song_10"])
-
         os.remove(file_path)
-
     elif stype == "audio":
         try:
-            filename = await youtube.download(
+            filename = await YouTube.download(
                 yturl,
                 mystic,
                 songaudio=True,
                 format_id=format_id,
                 title=title,
             )
-
         except Exception as e:
             return await mystic.edit_text(_["song_9"].format(e))
-
         med = InputMediaAudio(
             media=filename,
             caption=title,
-            thumb=thumb_image_path if thumb_image_path else None,
+            thumb=thumb_image_path,
             title=title,
             performer=x["uploader"],
         )
-
         await mystic.edit_text(_["song_11"])
-
         await app.send_chat_action(
-            chat_id=query.message.chat.id,
-            action=enums.ChatAction.UPLOAD_AUDIO,
+            chat_id=CallbackQuery.message.chat.id,
+            action=ChatAction.UPLOAD_AUDIO,
         )
-
         try:
-            await query.edit_message_media(media=med)
-
-        except Exception:
-            traceback.print_exc()
-
+            await CallbackQuery.edit_message_media(media=med)
+        except Exception as e:
+            print(e)
             return await mystic.edit_text(_["song_10"])
-
         os.remove(filename)
