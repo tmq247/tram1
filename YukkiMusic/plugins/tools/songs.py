@@ -318,7 +318,7 @@ async def song_download_cb(client, query, _):
             duration=duration,
             width=width,
             height=height,
-            thumb=thumb_image_path,
+            thumb=thumb_image_path if thumb_image_path else None,
             caption=title,
             supports_streaming=True,
         )
@@ -356,7 +356,7 @@ async def song_download_cb(client, query, _):
         med = InputMediaAudio(
             media=filename,
             caption=title,
-            thumb=thumb_image_path,
+            thumb=thumb_image_path if thumb_image_path else None,
             title=title,
             performer=x["uploader"],
         )
