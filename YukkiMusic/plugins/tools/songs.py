@@ -287,7 +287,7 @@ async def song_download_cb(client, CallbackQuery, _):
         width = CallbackQuery.message.photo.width
         height = CallbackQuery.message.photo.height
         try:
-            file_path = await YouTube.download(
+            file_path = await youtube.download(
                 yturl,
                 mystic,
                 songvideo=True,
@@ -318,7 +318,7 @@ async def song_download_cb(client, CallbackQuery, _):
         os.remove(file_path)
     elif stype == "audio":
         try:
-            filename = await YouTube.download(
+            filename = await youtube.download(
                 yturl,
                 mystic,
                 songaudio=True,
