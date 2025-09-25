@@ -15,11 +15,11 @@ async def sg(client: Client, message: Message):
     if message.reply_to_message:
         args = message.reply_to_message.from_user.id
     else:
-        args = message.text.split()[1]
+        args = message.text.split(None, 1)[1]
     lol = await message.reply("<code>Đang xử lý...</code>")
     if args:
         try:
-            user = await client.get_users(args)
+            user = await client.get_users(f"{args}")
         except Exception:
             return await lol.edit("<code>Vui lòng chỉ định một người dùng hợp lệ!</code>")
     bo = ["sangmata_bot", "sangmata_beta_bot"]
