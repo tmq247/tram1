@@ -25,7 +25,7 @@ async def sg(client: Client, message: Message):
     bo = ["sangmata_bot", "sangmata_beta_bot"]
     sg = random.choice(bo)
     if 1 in assistants:
-        ubot = us.one
+        ubot = us
     
     try:
         a = await ubot.send_message(sg, f"{user.id}")
