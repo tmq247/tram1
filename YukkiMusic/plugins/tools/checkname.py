@@ -16,13 +16,21 @@ async def sg(client: Client, message: Message):
         args = message.reply_to_message.from_user.id
     else:
         args = message.text.split(None, 1)[1]
+    if "@" in args:
+        args = args.replace("@", "")
+        try:
+            user = await client.get_users(args)
+            user = await us.clients[0].get_users(args)
+        except Exception:
+            return await lol.edit("<code>Vui lòng chỉ định một người dùng hợp lệ!</code>")
     lol = await message.reply("<code>Đang xử lý...</code>")
-    if args:
-        #try:
-        user = await client.get_users(args)
-        user = await us.clients[0].get_users(args)
-        #except Exception:
-            #return await lol.edit("<code>Vui lòng chỉ định một người dùng hợp lệ!</code>")
+    else:
+   # if args:
+        try:
+            user = await client.get_users((int(args))
+            user = await us.clients[0].get_users(int(args))
+        except Exception:
+            return await lol.edit("<code>Vui lòng chỉ định một người dùng hợp lệ!</code>")
     bo = ["sangmata_bot", "sangmata_beta_bot"]
     sg = random.choice(bo)
     #if 1 in assistants:
