@@ -5,7 +5,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 from pyrogram.raw.functions.messages import DeleteHistory
 
-from YukkiMusic import Yukki as ubot, app
+from YukkiMusic import userbot as ubot, app
 from YukkiMusic.core.userbot import assistants
 
 @app.on_message(filters.command("check"))
