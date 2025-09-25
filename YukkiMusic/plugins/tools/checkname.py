@@ -7,7 +7,7 @@ from pyrogram.raw.functions.messages import DeleteHistory
 
 from YukkiMusic import userbot as us, app
 from YukkiMusic.core.userbot import assistants
-from YukkiMusic.utils.functions import extract_user_and_reason
+from YukkiMusic.utils.functions import extract_user
 
 
 @app.on_message(filters.command("check"))
@@ -15,7 +15,7 @@ async def sg(client: Client, message: Message):
     if len(message.text.split()) < 1 and not message.reply_to_message:
         return await message.reply("check username/id/reply")
     if message.reply_to_message:
-        args, _ = extract_user_and_reason
+        args = extract_user
         #args = message.reply_to_message.from_user.id
     #else:
         #args, _ = extract_user_and_reason
