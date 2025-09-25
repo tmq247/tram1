@@ -27,7 +27,7 @@ async def sg(client: Client, message: Message):
     #if 1 in assistants:
         #ubot = us.1
     try:
-        a = await ubot.send_message(sg, f"{user.id}")
+        a = await ubot.clients[0].send_message(sg, f"{user.id}")
         await a.delete()
     except Exception as e:
         return await lol.edit(e)
