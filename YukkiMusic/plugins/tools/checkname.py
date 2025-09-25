@@ -7,30 +7,25 @@ from pyrogram.raw.functions.messages import DeleteHistory
 
 from YukkiMusic import userbot as us, app
 from YukkiMusic.core.userbot import assistants
+from YukkiMusic.utils.functions import extract_user_and_reason
+
 
 @app.on_message(filters.command("check"))
 async def sg(client: Client, message: Message):
     if len(message.text.split()) < 1 and not message.reply_to_message:
         return await message.reply("check username/id/reply")
     if message.reply_to_message:
-        args = message.reply_to_message.from_user.id
-    else:
-        args = message.text.split(None, 1)[1]
-        if "@" in args:
-            args = args.replace("@", "")
-            lol = await message.reply("<code>Đang xử lý...</code>")
-            try:
-                user = await client.get_users(args)
-                user = await us.clients[0].get_users(args)
-            except Exception:
-                return await lol.edit("<code>Vui lòng chỉ định một người dùng hợp lệ!</code>")
+        args, _ = extract_user_and_reason
+        #args = message.reply_to_message.from_user.id
+    #else:
+        #args, _ = extract_user_and_reason
+        #args = message.text.split()[1]
     lol = await message.reply("<code>Đang xử lý...</code>")
-   # if args:
-    try:
-        user = await client.get_users(int(args))
-        user = await us.clients[0].get_users(int(args))
-    except Exception:
-        return await lol.edit("<code>Vui lòng chỉ định một người dùng hợp lệ!</code>")
+    if args:
+        try:
+            user = await client.get_users(args)
+        except Exception:
+            return await lol.edit("<code>Vui lòng chỉ định một người dùng hợp lệ!</code>")
     bo = ["sangmata_bot", "sangmata_beta_bot"]
     sg = random.choice(bo)
     #if 1 in assistants:
