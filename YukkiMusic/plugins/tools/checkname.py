@@ -19,11 +19,11 @@ async def sg(client: Client, message: Message):
         if "@" in args:
             args = args.replace("@", "")
             lol = await message.reply("<code>Đang xử lý...</code>")
-        try:
-            user = await client.get_users(args)
-            user = await us.clients[0].get_users(args)
-        except Exception:
-            return await lol.edit("<code>Vui lòng chỉ định một người dùng hợp lệ!</code>")
+            try:
+                user = await client.get_users(args)
+                user = await us.clients[0].get_users(args)
+            except Exception:
+                return await lol.edit("<code>Vui lòng chỉ định một người dùng hợp lệ!</code>")
     lol = await message.reply("<code>Đang xử lý...</code>")
    # if args:
     try:
