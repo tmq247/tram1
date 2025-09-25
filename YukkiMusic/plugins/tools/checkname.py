@@ -5,8 +5,8 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 from pyrogram.raw.functions.messages import DeleteHistory
 
-from SANKIXD import userbot as us, app
-from SANKIXD.core.userbot import assistants
+from YukkiMusic import userbot as us, app
+from YukkiMusic.core.userbot import assistants
 
 @app.on_message(filters.command("check"))
 async def sg(client: Client, message: Message):
@@ -38,7 +38,7 @@ async def sg(client: Client, message: Message):
         if stalk.text == None:
             continue
         if not stalk:
-            await message.reply("botnya ngambek")
+            await message.reply("bot lỗi")
         elif stalk:
             await message.reply(f"{stalk.text}")
             break  # Exit the loop after displaying one message
