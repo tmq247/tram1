@@ -15,7 +15,7 @@ async def sg(client: Client, message: Message):
     if len(message.text.split()) < 1 and not message.reply_to_message:
         return await message.reply("check username/id/reply")
     if message.reply_to_message:
-        args = extract_user
+        
         #args = message.reply_to_message.from_user.id
     #else:
         #args, _ = extract_user_and_reason
@@ -23,7 +23,8 @@ async def sg(client: Client, message: Message):
     lol = await message.reply("<code>Đang xử lý...</code>")
     #if args:
     try:
-        user = await client.get_users(args)
+        user = extract_user
+        #user = await client.get_users(args)
     except Exception:
         return await lol.edit("<code>Vui lòng chỉ định một người dùng hợp lệ!</code>")
     bo = ["sangmata_bot", "sangmata_beta_bot"]
