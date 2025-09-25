@@ -18,6 +18,7 @@ async def sg(client: Client, message: Message):
         args = message.text.split(None, 1)[1]
     if "@" in args:
         args = args.replace("@", "")
+        lol = await message.reply("<code>Đang xử lý...</code>")
         try:
             user = await client.get_users(args)
             user = await us.clients[0].get_users(args)
