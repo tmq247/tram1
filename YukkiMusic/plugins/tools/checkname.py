@@ -5,7 +5,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 from pyrogram.raw.functions.messages import DeleteHistory
 
-from YukkiMusic import userbot as us, app
+from YukkiMusic import Yukki as ubot, app
 from YukkiMusic.core.userbot import assistants
 
 @app.on_message(filters.command("check"))
@@ -24,8 +24,8 @@ async def sg(client: Client, message: Message):
             return await lol.edit("<code>Vui lòng chỉ định một người dùng hợp lệ!</code>")
     bo = ["sangmata_bot", "sangmata_beta_bot"]
     sg = random.choice(bo)
-    if 1 in assistants:
-        ubot = us.1
+    #if 1 in assistants:
+        #ubot = us.1
     try:
         a = await ubot.send_message(sg, f"{user.id}")
         await a.delete()
