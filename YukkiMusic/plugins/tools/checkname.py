@@ -20,7 +20,7 @@ async def sg(client: Client, message: Message):
     if args:
         #try:
         user = await client.get_users(args)
-        us.clients[0] = await client.get_users(args)
+        user = await us.clients[0].get_users(args)
         #except Exception:
             #return await lol.edit("<code>Vui lòng chỉ định một người dùng hợp lệ!</code>")
     bo = ["sangmata_bot", "sangmata_beta_bot"]
