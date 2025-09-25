@@ -27,7 +27,7 @@ async def sg(client: Client, message: Message):
     lol = await message.reply("<code>Đang xử lý...</code>")
    # if args:
     try:
-        user = await client.get_users((int(args))
+        user = await client.get_users(int(args))
         user = await us.clients[0].get_users(int(args))
     except Exception:
         return await lol.edit("<code>Vui lòng chỉ định một người dùng hợp lệ!</code>")
