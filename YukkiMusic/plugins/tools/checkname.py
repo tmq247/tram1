@@ -14,10 +14,14 @@ from YukkiMusic.utils.functions import extract_user
 async def sg(client: Client, message: Message):
     if len(message.text.split()) < 1 and not message.reply_to_message:
         return await message.reply("check username/id/reply")
-    args = await extract_user(message)
+    user_id = await extract_user(message)
+    if not user_id:
+        return await message.reply_text("Tôi không thể tìm thấy người dùng đó.")
+    if user_id == BOT_ID:
+        return 
     lol = await message.reply("<code>Đang xử lý...</code>")
     try:
-        user = await client.get_users(args.id)
+        user = await client.get_users(user_id)
     except Exception:
         return await lol.edit("<code>Vui lòng chỉ định một người dùng hợp lệ!</code>")
     bo = ["sangmata_bot", "sangmata_beta_bot"]
