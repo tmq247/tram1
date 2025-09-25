@@ -14,7 +14,7 @@ from YukkiMusic.utils.functions import extract_user
 async def sg(client: Client, message: Message):
     if len(message.text.split()) < 1 and not message.reply_to_message:
         return await message.reply("check username/id/reply")
-    args = extract_user(message)
+    args = await extract_user(message)
     lol = await message.reply("<code>Đang xử lý...</code>")
     try:
         user = await client.get_users(args.id)
